@@ -15,6 +15,7 @@
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.binding.StringExpression;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -190,11 +191,11 @@ public class T04_PropertyBinding extends Application {
         DoubleProperty score = new SimpleDoubleProperty(75.0);
 
         // Bindings.format works like String.format but returns an observable.
-        javafx.beans.binding.StringBinding scoreText =
+        StringExpression scoreText =
             Bindings.format("Score: %.0f%%", score);
 
         // Bindings.when creates a conditional (ternary) binding.
-        javafx.beans.binding.StringBinding grade =
+        StringExpression grade =
             Bindings.when(score.greaterThanOrEqualTo(90))
                     .then("A")
                     .otherwise(
