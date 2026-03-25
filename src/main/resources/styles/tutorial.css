@@ -1,0 +1,247 @@
+/*
+ * tutorial.css
+ * External stylesheet for T06_Styling.java (CSCI 1302 - Lab 08)
+ *
+ * This file is loaded by the Scene in T06_Styling.java via:
+ *   scene.getStylesheets().add(
+ *       T06_Styling.class.getResource("/styles/tutorial.css").toExternalForm()
+ *   );
+ *
+ * JavaFX CSS selectors follow CSS 2.1 syntax with -fx- prefixed properties.
+ * Every JavaFX control class maps to a type selector of the same name.
+ * For example, a Button is matched by ".button" (lowercase, with a dot).
+ *
+ * Type selectors use the CSS class name, not the Java class name:
+ *   .button       -> javafx.scene.control.Button
+ *   .label        -> javafx.scene.control.Label
+ *   .text-field   -> javafx.scene.control.TextField
+ *   .check-box    -> javafx.scene.control.CheckBox
+ *   .slider       -> javafx.scene.control.Slider
+ *
+ * SPECIFICITY (highest to lowest):
+ *   inline setStyle() > #id > .class > type selector > inherited
+ */
+
+
+/* ===========================================================
+   1. Root and Scene Background
+   ===========================================================
+   #root-container is set via root.setId("root-container") in Java.
+   This targets exactly that one node.
+*/
+#root-container {
+    -fx-background-color: #fafafa;
+}
+
+
+/* ===========================================================
+   2. Tag Badges
+   ===========================================================
+   Labels with both "tag" and a variant class.
+   The comma in the selector means "match either".
+*/
+.tag {
+    -fx-padding: 3 10 3 10;
+    -fx-background-radius: 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.tag-primary {
+    -fx-background-color: #1976d2;
+}
+
+.tag-success {
+    -fx-background-color: #388e3c;
+}
+
+.tag-warning {
+    -fx-background-color: #f57c00;
+    -fx-text-fill: #1a1a1a;
+}
+
+.tag-danger {
+    -fx-background-color: #c62828;
+}
+
+
+/* ===========================================================
+   3. Button Variants
+   ===========================================================
+   JavaFX Button has its own default structure. Overriding
+   -fx-background-color on .button removes Modena's layered
+   backgrounds and replaces them with a flat color.
+   Always set -fx-background-radius to keep rounded corners.
+*/
+.btn {
+    -fx-font-size: 13px;
+    -fx-padding: 7 18 7 18;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-cursor: hand;
+}
+
+/* Primary: solid blue */
+.btn-primary {
+    -fx-background-color: #1976d2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #1565c0;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #0d47a1;
+}
+
+/* Secondary: gray */
+.btn-secondary {
+    -fx-background-color: #757575;
+    -fx-text-fill: white;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #616161;
+}
+
+.btn-secondary:pressed {
+    -fx-background-color: #424242;
+}
+
+/* Outline: transparent background, colored border */
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1976d2;
+    -fx-border-color: #1976d2;
+    -fx-border-width: 2;
+}
+
+.btn-outline:hover {
+    -fx-background-color: #e3f2fd;
+}
+
+.btn-outline:pressed {
+    -fx-background-color: #bbdefb;
+}
+
+/* Disabled state -- applies to any .btn when disabled */
+.btn:disabled {
+    -fx-opacity: 0.45;
+}
+
+
+/* ===========================================================
+   4. ID Selector
+   ===========================================================
+   #styled-title targets the label set with setId("styled-title").
+*/
+#styled-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a148c;
+    -fx-border-color: transparent transparent #7b1fa2 transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-padding: 0 0 6 0;
+}
+
+
+/* ===========================================================
+   5. Pseudo-Class Demo
+   ===========================================================
+   These rules only apply to nodes with the "pseudo-demo" class.
+   :hover, :focused, and :pressed are built-in JavaFX pseudo-classes.
+*/
+.pseudo-demo {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #bdbdbd;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 14 6 14;
+    -fx-font-size: 13px;
+    -fx-transition: all 0.15s; /* limited support -- mainly for opacity */
+}
+
+.pseudo-demo:hover {
+    -fx-background-color: #e3f2fd;
+    -fx-border-color: #1976d2;
+    -fx-text-fill: #1976d2;
+}
+
+.pseudo-demo:focused {
+    -fx-background-color: #fff9c4;
+    -fx-border-color: #f9a825;
+    -fx-border-width: 2;
+}
+
+.pseudo-demo:pressed {
+    -fx-background-color: #c8e6c9;
+    -fx-border-color: #388e3c;
+    -fx-text-fill: #1b5e20;
+}
+
+
+/* ===========================================================
+   6. TextField Base Style (global override)
+   ===========================================================
+   This rule applies to ALL TextFields in the scene.
+   Comment it out if you don't want the global override.
+*/
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #bdbdbd;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 5 8 5 8;
+}
+
+.text-field:focused {
+    -fx-border-color: #1976d2;
+    -fx-border-width: 2;
+    -fx-background-color: white;
+}
+
+
+/* ===========================================================
+   7. Descendant and Child Combinators
+   ===========================================================
+   .section-box > .label  targets only direct Label children.
+   .section-box .label    targets any Label descendant.
+   
+   These are not used in the tutorial demo but are shown here
+   as reference for how to write structural selectors.
+*/
+.section-box > .label {
+    -fx-font-weight: bold;
+}
+
+
+/* ===========================================================
+   8. Gradients Reference
+   ===========================================================
+   JavaFX supports linear and radial gradients in CSS.
+   These are not selectors -- they are examples for reference.
+
+   Linear gradient syntax:
+     linear-gradient(direction, stop1, stop2, ...)
+     direction: to top | to bottom | to left | to right
+                or an angle: 45deg
+     stop: color [percentage]
+
+   Examples:
+     -fx-background-color: linear-gradient(to bottom, #42a5f5, #1565c0);
+     -fx-background-color: linear-gradient(45deg, #f06 0%, #9f6 50%, #06f 100%);
+
+   Radial gradient syntax:
+     radial-gradient(center cx% cy%, radius r%, stop1, stop2, ...)
+
+   Example:
+     -fx-background-color: radial-gradient(center 50% 50%, radius 70%, #fff 0%, #42a5f5 100%);
+
+   Multiple backgrounds (comma-separated layers, front to back):
+     -fx-background-color: rgba(0,0,0,0.08), linear-gradient(to bottom, #e3f2fd, #bbdefb);
+     -fx-background-radius: 4, 4;
+     -fx-background-insets: 0, 0;
+*/
