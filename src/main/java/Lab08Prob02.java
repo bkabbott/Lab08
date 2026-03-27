@@ -29,18 +29,18 @@ public class Lab08Prob02 extends Application {
         TextField answerTextField = new TextField();
 
         // create buttons
-        Button addition = new Button("+");
-        Button subtraction = new Button("-");
-        Button multiplication = new Button("*");
-        Button division = new Button("/");
+        Button additionButton = new Button("+");
+        Button subtractionButton = new Button("-");
+        Button multiplicationButton = new Button("*");
+        Button divisionButton = new Button("/");
 
         // create gridpane and add buttons to it
         GridPane buttonsGridPane = new GridPane();
         buttonsGridPane.setAlignment(Pos.CENTER); // Set center alignment
-        buttonsGridPane.add(addition, 0, 0);
-        buttonsGridPane.add(subtraction, 1, 0);
-        buttonsGridPane.add(multiplication, 0, 1);
-        buttonsGridPane.add(division,1, 1);
+        buttonsGridPane.add(additionButton, 0, 0);
+        buttonsGridPane.add(subtractionButton, 1, 0);
+        buttonsGridPane.add(multiplicationButton, 0, 1);
+        buttonsGridPane.add(divisionButton,1, 1);
 
         // create a Hbox and add items to it
         HBox hbox = new HBox();
